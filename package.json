@@ -1,0 +1,23 @@
+{
+  "name": "markdown-note-api-roadmap-5",
+  "version": "1.0.0",
+  "description": "a api allowing a user to create and update markdown files",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "markdown": "^0.5.0",
+    "markdown-it": "^14.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0"
+  }
+}
