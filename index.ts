@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import router from './src/routes/noteController';
+import noteRoute from './src/routes/noteController';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -11,7 +11,7 @@ const app: Application = express();
 // Middleware
 
 app.use(express.json()); // Parse incoming JSON requests
-app.use(router, "/notes")
+app.use("/notes", noteRoute)
 
 // Define a simple route
 app.get('/', (req: Request, res: Response) => {
