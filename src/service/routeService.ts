@@ -42,15 +42,17 @@ export const convertMarkdownToHTML = async (markdown: string): Promise<{ rendere
 };
 
 
-export const saveMarkdownFile = async (markdown: string, fileName: string): Promise<void> => {
+export const saveMarkdownFile = async (markdown: string, fileName: string): Promise<string> => {
     try {
         // Define the file path
         const filePath = path.join(__dirname, fileName);
 
         // Write the Markdown text to the file
-        await fs.writeFile(filePath, markdown, 'utf-8');
+        await fs.writeFile(filePath, markdown);
 
         console.log(`Markdown file saved to ${filePath}`);
+        return filePath;
+        
     } catch (error) {
         console.error('Failed to save Markdown file:', error);
         throw new Error('Error saving Markdown file.');

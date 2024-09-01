@@ -14,16 +14,23 @@ noteRoute.post('/check-grammar', (req: Request, res: Response) => {
 });
 
 // Endpoint 2: Save Note as Markdown
-noteRoute.post('/save-note', (req: Request, res: Response) => {
+noteRoute.post('/save-note', async (req: Request, res: Response) => {
     const { markdown } = req.body;
+    const filePath = await saveMarkdownFile(markdown, "newMarkDownFile")
     // Logic for saving the note as markdown (e.g., save to a database or file)
     // For now, return the received markdown
-    res.json({ message: 'Note saved successfully', markdown });
+    res.download(filePath, 'newMarkDown.md', (err) => {
+        if (err) {
+            console.error('Error in downloading markdown file:', err);
+            res.status(500).send('Error downloading file');
+        } 
+    });
+   
 });
 
 // Endpoint 3: Render Note as HTML
 noteRoute.get('/render-note', async (req: Request, res: Response) => {
-    try {
+    
         const { markdown } = req.body;
 
         if (!markdown) {
@@ -39,7 +46,7 @@ noteRoute.get('/render-note', async (req: Request, res: Response) => {
                 res.status(500).send('Error downloading file');
             } 
         });
-    } 
+    
 });
 
 export default noteRoute;
